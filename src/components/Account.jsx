@@ -1,18 +1,43 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
 
-//user must be logged in to access account page
-//if user is not logged in, redirect to signin page
-//if user is logged in, show account page
+const Account = () => {
+  //match logged in user to user in firestore and return display name
+  const [displayName, setDisplayName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState(null);
 
-const Account = ({ user }) => {
   let navigate = useNavigate();
+
+  const [user, setUser] = React.useState(null);
+  //get user logged in and display name
+  //if user is not logged in, redirect to signin page
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      console.log("USER", user);
+      //turn user.email object into string
+
+      setEmail(user.email);
+      alert("You are logged in", uid);
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+
   console.log(user);
   return (
     <div className="max-w-[600px] mx-auto my-16 p-4">
       <h1 className="text-2xl font-bold py-4">Account</h1>
-      <p>User Email:{user?.displayName}</p>
-      <p>User Email:{user?.email}</p>
+
+      <p>User email:{email} </p>
       <button
         onClick={() => {
           navigate("/");
