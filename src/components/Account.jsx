@@ -2,10 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
-import { doc, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { data } from "autoprefixer";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Account = () => {
   //match logged in user to user in firestore and return display name
@@ -105,7 +104,7 @@ const Account = () => {
               <h3 className="py-2">Time: {date.toLocaleTimeString()} </h3>
             </div>
           ) : (
-            <h3>Loading...</h3>
+            <LoadingSpinner />
           )}
         </div>
         {/* display scores in a column alongside user */}
