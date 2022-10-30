@@ -44,7 +44,7 @@ const Signup = () => {
   return (
     <div className="max-w-30 my-16 p-4 mx-auto">
       <div>
-        <h1 className="text-2xl font-bold py-2">Sign in to your account</h1>
+        <h1 className="text-2xl font-bold py-2">Sign up for an account</h1>
         <h3>{auth.currentUser?.displayName}</h3>
       </div>
       <form className="mx-auto" onSubmit={handleSubmit}>

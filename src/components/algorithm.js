@@ -1,18 +1,8 @@
-//find the mode of an array
-function mode(array) {
-  if (array.length === 0) return null;
-
-  var modeMap = {};
-  var maxEl = array[0],
-    maxCount = 1;
-  for (var i = 0; i < array.length; i++) {
-    var el = array[i];
-    if (modeMap[el] == null) modeMap[el] = 1;
-    else modeMap[el]++;
-    if (modeMap[el] > maxCount) {
-      maxEl = el;
-      maxCount = modeMap[el];
-    }
+// reverse order of array
+function reverseArray(array) {
+  var newArray = [];
+  for (var i = array.length - 1; i >= 0; i--) {
+    newArray.push(array[i]);
   }
-  return maxEl;
+  return newArray;
 }
